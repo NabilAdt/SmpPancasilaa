@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perjalanan Belajar yang Menyenangkan - SMP Negeri 1 Nusantara</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-coral: #FF6B6B;
+            --secondary-turquoise: #4ECDC4;
+            --accent-yellow: #FFE66D;
+            --warm-white: #F7F7F7;
+            --text-dark: #2C3E50;
+            --soft-gray: #95A5A6;
+            --gradient-warm: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+            --gradient-soft: linear-gradient(135deg, #FFE66D 0%, #FF6B6B 100%);
+        }
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .handwritten {
+            font-family: 'Caveat', cursive;
+        }
+
+        .hero-bg {
+            background: linear-gradient(rgba(255, 107, 107, 0.85), rgba(78, 205, 196, 0.85)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(255, 107, 107, 0.25);
+        }
+
+        .program-card {
+            position: relative;
+            overflow: hidden;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .program-card:hover::before {
+            left: 100%;
+        }
+
+        .stats-counter {
+            background: var(--gradient-warm);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3rem;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .curriculum-tab {
+            transition: all 0.3s ease;
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: 2px solid #E5E7EB;
+            background: white;
+            color: #6B7280;
+            cursor: pointer;
+        }
+
+        .curriculum-tab.active {
+            background: var(--gradient-warm);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .curriculum-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .curriculum-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .teacher-card {
+            position: relative;
+            overflow: hidden;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .teacher-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-warm);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .teacher-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.15);
+        }
+
+        .achievement-badge {
+            position: relative;
+            overflow: hidden;
+            background: var(--gradient-warm);
+            border-radius: 20px;
+            padding: 2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .achievement-badge::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-coral);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-warm);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-warm);
+            border-radius: 2px;
+        }
+
+        .emoji-decoration {
+            font-size: 2rem;
+            margin: 0 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero-bg h1 { font-size: 2.5rem; }
+            .stats-counter { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white/95 backdrop-blur-md shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-red-400 to-teal-400 rounded-xl flex items-center justify-center mr-3 shadow-lg">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="font-bold text-xl text-gray-800">SMP Negeri 1 Nusantara</span>
+                            <p class="text-xs text-gray-500 handwritten">Rumah kedua untuk impian anak-anak</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-gray-700 hover:text-red-400 font-medium transition">🏠 Beranda</a>
+                    <div class="relative group">
+                        <button class="nav-link text-gray-700 hover:text-red-400 font-medium flex items-center">
+                            👥 Profil <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100">
+                            <a href="profil_improved.html#about" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400 rounded-t-xl">Tentang Sekolah</a>
+                            <a href="profil_improved.html#vision" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400">Visi & Misi</a>
+                            <a href="profil_improved.html#history" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400">Sejarah</a>
+                            <a href="profil_improved.html#facilities" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400 rounded-b-xl">Fasilitas</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="nav-link text-red-400 font-medium flex items-center">
+                            📚 Akademik <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100">
+                            <a href="#programs" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400 rounded-t-xl">Program Unggulan</a>
+                            <a href="#curriculum" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400">Kurikulum</a>
+                            <a href="#teachers" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400">Tenaga Pengajar</a>
+                            <a href="#achievements" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400 rounded-b-xl">Prestasi</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="nav-link text-gray-700 hover:text-red-400 font-medium flex items-center">
+                            🎓 Siswa <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100">
+                            <a href="siswa.html#extracurricular" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400 rounded-t-xl">Ekstrakurikuler</a>
+                            <a href="siswa.html#student-council" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400">OSIS</a>
+                            <a href="siswa.html#alumni" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400">Alumni</a>
+                            <a href="siswa.html#gallery" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400 rounded-b-xl">Galeri</a>
+                        </div>
+                    </div>
+                    <a href="berita.html#news" class="nav-link text-gray-700 hover:text-red-400 font-medium transition">📰 Berita</a>
+                    <a href="kontak_improved.html#contact" class="nav-link text-gray-700 hover:text-red-400 font-medium transition">💬 Kontak</a>
+                    <button onclick="showLoginModal()" class="btn-primary">
+                        <i class="fas fa-cog mr-2"></i>Admin
+                    </button>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700 hover:text-red-400">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <!-- Hero Section -->
+        <section class="hero-bg pt-16 pb-20 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-red-400/20 to-teal-400/20"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 relative z-10">
+                <div class="text-center text-white">
+                    <div class="handwritten text-2xl text-yellow-200 mb-4">Yuk, jelajahi</div>
+                    <h1 class="text-4xl lg:text-6xl font-bold mb-6" id="hero-title">
+                        Perjalanan Belajar yang <span class="text-yellow-300">Menyenangkan!</span>
+                        <span class="emoji-decoration">🎓</span>
+                    </h1>
+                    <p class="text-xl mb-8 text-blue-100 max-w-3xl mx-auto leading-relaxed" id="hero-subtitle">
+                        Di sini, belajar bukan hanya tentang nilai, tapi tentang menemukan passion, mengembangkan bakat, dan mempersiapkan masa depan yang cerah dengan cara yang menyenangkan!
+                    </p>
+                    <nav class="flex justify-center space-x-2 text-sm">
+                        <a href="index.html" class="text-blue-200 hover:text-white transition">Beranda</a>
+                        <span class="text-blue-200">/</span>
+                        <span class="text-white">Akademik</span>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Stats Section -->
+        <section class="py-20 bg-white scroll-reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="section-title text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                        Prestasi Akademik yang Membanggakan
+                        <span class="emoji-decoration">🏆</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 handwritten text-2xl">Bukti nyata kualitas pendidikan kami</p>
+                </div>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 card-hover">
+                        <div class="stats-counter">95%</div>
+                        <p class="text-gray-600 font-medium">Tingkat Kelulusan</p>
+                        <p class="text-sm text-gray-500 mt-2">3 tahun terakhir</p>
+                    </div>
+                    <div class="text-center bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-6 card-hover">
+                        <div class="stats-counter">85%</div>
+                        <p class="text-gray-600 font-medium">Diterima SMA Favorit</p>
+                        <p class="text-sm text-gray-500 mt-2">Alumni 2023</p>
+                    </div>
+                    <div class="text-center bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 card-hover">
+                        <div class="stats-counter">50+</div>
+                        <p class="text-gray-600 font-medium">Prestasi Kompetisi</p>
+                        <p class="text-sm text-gray-500 mt-2">Tingkat nasional</p>
+                    </div>
+                    <div class="text-center bg-gradient-to-br from-pink-50 to-red-50 rounded-2xl p-6 card-hover">
+                        <div class="stats-counter">8.5</div>
+                        <p class="text-gray-600 font-medium">Rata-rata UN</p>
+                        <p class="text-sm text-gray-500 mt-2">Tahun 2023</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programs Section -->
+        <section id="programs" class="py-20 bg-gradient-to-br from-gray-50 to-white scroll-reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                        Program Unggulan yang Bikin Excited!
+                        <span class="emoji-decoration">🌟</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 handwritten text-2xl">Berbagai program seru untuk mengembangkan potensi maksimal</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="program-card card-hover">
+                        <div class="w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-laptop-code text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Kelas Digital Seru</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">Belajar teknologi jadi menyenangkan! Coding, robotika, dan digital literacy yang bikin anak-anak excited belajar.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-users mr-2"></i>
+                            <span>24 siswa per kelas</span>
+                        </div>
+                    </div>
+                    
+                    <div class="program-card card-hover">
+                        <div class="w-20 h-20 bg-gradient-to-r from-green-400 to-teal-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-globe text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Bahasa Internasional</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">English dan Mandarin yang fun! Dengan native speaker dan metode interactive yang bikin anak berani bicara.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-comments mr-2"></i>
+                            <span>Conversation class</span>
+                        </div>
+                    </div>
+                    
+                    <div class="program-card card-hover">
+                        <div class="w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-brain text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Olimpiade Sains</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">Persiapan kompetisi sains dengan metode yang menyenangkan. Bukan drill, tapi eksplorasi dan discovery!</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-trophy mr-2"></i>
+                            <span>50+ medali</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Curriculum Section -->
+        <section id="curriculum" class="py-20 bg-white scroll-reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                        Kurikulum yang Adaptif & Menyenangkan
+                        <span class="emoji-decoration">📚</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 handwritten text-2xl">Pembelajaran yang disesuaikan dengan kebutuhan zaman</p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button class="curriculum-tab active" onclick="showCurriculum('kurikulum-merdeka')">Kurikulum Merdeka</button>
+                    <button class="curriculum-tab" onclick="showCurriculum('pembelajaran-digital')">Pembelajaran Digital</button>
+                    <button class="curriculum-tab" onclick="showCurriculum('karakter-building')">Character Building</button>
+                </div>
+                
+                <div id="kurikulum-merdeka" class="curriculum-content active">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-6">Kurikulum Merdeka yang Membebaskan</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <span class="text-yellow-400 mr-3 text-xl">🎯</span>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Project Based Learning</h4>
+                                        <p class="text-gray-600">Belajar melalui proyek nyata yang relevan dengan kehidupan sehari-hari</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="text-yellow-400 mr-3 text-xl">🤝</span>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Collaborative Learning</h4>
+                                        <p class="text-gray-600">Kerja sama tim yang mengembangkan soft skills dan leadership</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="text-yellow-400 mr-3 text-xl">🎨</span>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Creative Expression</h4>
+                                        <p class="text-gray-600">Ruang untuk mengekspresikan kreativitas dalam setiap mata pelajaran</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8">
+                            <div class="text-center">
+                                <div class="w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-rocket text-white text-2xl"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-800 mb-4">Profil Pelajar Pancasila</h4>
+                                <p class="text-gray-600">Mengembangkan karakter sesuai dengan nilai-nilai Pancasila melalui pembelajaran yang bermakna dan menyenangkan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="pembelajaran-digital" class="curriculum-content">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-8">Integrasi Teknologi dalam Pembelajaran</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-6">
+                                <i class="fas fa-tablet-alt text-3xl text-teal-500 mb-4"></i>
+                                <h4 class="font-bold text-gray-800 mb-2">Digital Classroom</h4>
+                                <p class="text-gray-600">Setiap kelas dilengkapi smart board dan tablet untuk pembelajaran interaktif</p>
+                            </div>
+                            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6">
+                                <i class="fas fa-cloud text-3xl text-blue-500 mb-4"></i>
+                                <h4 class="font-bold text-gray-800 mb-2">Cloud Learning</h4>
+                                <p class="text-gray-600">Platform pembelajaran online yang bisa diakses kapan saja, dimana saja</p>
+                            </div>
+                            <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6">
+                                <i class="fas fa-gamepad text-3xl text-purple-500 mb-4"></i>
+                                <h4 class="font-bold text-gray-800 mb-2">Gamification</h4>
+                                <p class="text-gray-600">Belajar sambil bermain dengan sistem reward yang memotivasi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="karakter-building" class="curriculum-content">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-8">Pembentukan Karakter yang Kuat</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6">
+                                <i class="fas fa-heart text-3xl text-orange-500 mb-4"></i>
+                                <h4 class="font-bold text-gray-800 mb-2">Emotional Intelligence</h4>
+                                <p class="text-gray-600">Program khusus untuk mengembangkan kecerdasan emosional dan empati</p>
+                            </div>
+                            <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-6">
+                                <i class="fas fa-users text-3xl text-red-500 mb-4"></i>
+                                <h4 class="font-bold text-gray-800 mb-2">Social Skills</h4>
+                                <p class="text-gray-600">Kegiatan yang mengembangkan kemampuan bersosialisasi dan leadership</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teachers Section -->
+        <section id="teachers" class="py-20 bg-gradient-to-br from-gray-50 to-white scroll-reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                        Tim Guru yang Luar Biasa
+                        <span class="emoji-decoration">👨‍🏫</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 handwritten text-2xl">Pendidik berpengalaman yang peduli dengan setiap anak</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="teacher-card card-hover">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                             alt="Pak Ahmad" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Pak Ahmad Wijaya, S.Pd</h3>
+                        <p class="text-red-500 font-semibold mb-2">Guru Matematika</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">"Matematika itu indah kalau kita tahu caranya. Saya suka melihat mata anak-anak berbinar saat mereka 'aha!' memahami konsep."</p>
+                        <div class="mt-4 text-yellow-400">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="teacher-card card-hover">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                             alt="Bu Sarah" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Bu Sarah Indira, S.Pd</h3>
+                        <p class="text-teal-500 font-semibold mb-2">Guru Bahasa Inggris</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">"English is fun! Saya percaya setiap anak bisa fasih berbahasa Inggris kalau belajarnya dengan cara yang menyenangkan."</p>
+                        <div class="mt-4 text-yellow-400">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="teacher-card card-hover">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                             alt="Pak Budi" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Pak Budi Santoso, S.Pd</h3>
+                        <p class="text-purple-500 font-semibold mb-2">Guru IPA</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">"Sains ada di sekitar kita! Saya suka mengajak anak-anak eksperimen dan menemukan keajaiban alam."</p>
+                        <div class="mt-4 text-yellow-400">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="py-20 bg-white scroll-reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                        Prestasi yang Membanggakan
+                        <span class="emoji-decoration">🏅</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 handwritten text-2xl">Bukti nyata kualitas pendidikan kami</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="achievement-badge card-hover">
+                        <div class="relative z-10">
+                            <i class="fas fa-trophy text-4xl mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">Juara 1 OSN Matematika</h3>
+                            <p class="text-blue-100">Tingkat Provinsi 2023</p>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-badge card-hover">
+                        <div class="relative z-10">
+                            <i class="fas fa-medal text-4xl mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">Juara 2 Lomba Robotika</h3>
+                            <p class="text-blue-100">Tingkat Nasional 2023</p>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-badge card-hover">
+                        <div class="relative z-10">
+                            <i class="fas fa-award text-4xl mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">Sekolah Adiwiyata</h3>
+                            <p class="text-blue-100">Tingkat Nasional 2022</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 bg-gradient-to-r from-red-400 to-teal-400 text-white scroll-reveal">
+            <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">
+                    Siap Memulai Perjalanan Belajar yang Seru?
+                    <span class="emoji-decoration">🚀</span>
+                </h2>
+                <p class="text-xl mb-8 text-blue-100 leading-relaxed">
+                    Bergabunglah dengan kami dan rasakan pengalaman belajar yang tidak akan pernah terlupakan. Mari wujudkan impian akademik bersama-sama!
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-white text-red-400 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition transform hover:scale-105">
+                        <i class="fas fa-calendar mr-2"></i>Daftar Sekarang
+                    </button>
+                    <button class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-red-400 transition transform hover:scale-105">
+                        <i class="fas fa-info-circle mr-2"></i>Info Lebih Lanjut
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-red-400 to-teal-400 rounded-xl flex items-center justify-center mr-3">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="font-bold text-xl">SMP Negeri 1 Nusantara</span>
+                            <p class="text-sm text-gray-300 handwritten">Rumah kedua untuk impian anak-anak</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed">Membangun generasi unggul dan berkarakter melalui pendidikan yang penuh kasih dan fasilitas terbaik.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-red-400 transition transform hover:scale-110"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-red-400 transition transform hover:scale-110"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-red-400 transition transform hover:scale-110"><i class="fab fa-youtube text-xl"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-red-400 transition transform hover:scale-110"><i class="fab fa-tiktok text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4 text-red-400">Menu Cepat</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="index.html" class="hover:text-white transition">🏠 Beranda</a></li>
+                        <li><a href="#programs" class="hover:text-white transition">🌟 Program</a></li>
+                        <li><a href="#curriculum" class="hover:text-white transition">📚 Kurikulum</a></li>
+                        <li><a href="#teachers" class="hover:text-white transition">👨‍🏫 Guru</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4 text-teal-400">Kontak Kami</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-phone mr-2 text-red-400"></i>(021) 1234-5678</li>
+                        <li class="flex items-center"><i class="fas fa-envelope mr-2 text-red-400"></i>info@smpn1nusantara.sch.id</li>
+                        <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-400"></i>Kota Nusantara</li>
+                        <li class="flex items-center"><i class="fas fa-clock mr-2 text-red-400"></i>Senin - Jumat, 07:00 - 16:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 SMP Negeri 1 Nusantara. Dibuat dengan <i class="fas fa-heart text-red-400"></i> untuk masa depan anak-anak Indonesia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Curriculum tab functionality
+        function showCurriculum(tabId) {
+            // Hide all content
+            document.querySelectorAll('.curriculum-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.curriculum-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('revealed');
+                }
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        function smoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            smoothScroll();
+            
+            // Add scroll event listener for reveal animations
+            window.addEventListener('scroll', revealOnScroll);
+            
+            // Initial check for elements in view
+            revealOnScroll();
+        });
+
+        // Placeholder functions for admin functionality
+        function showLoginModal() {
+            alert('Fitur admin akan segera hadir! 🚀');
+        }
+    </script>
+</body>
+</html>
+

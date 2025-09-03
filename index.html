@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMP Pancasila Krian - Rumah Kedua untuk Impian Anak-Anak</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-coral: #FF6B6B;
+            --secondary-turquoise: #4ECDC4;
+            --accent-yellow: #FFE66D;
+            --warm-white: #F7F7F7;
+            --text-dark: #2C3E50;
+            --soft-gray: #95A5A6;
+            --gradient-warm: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+            --gradient-soft: linear-gradient(135deg, #FFE66D 0%, #FF6B6B 100%);
+        }
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .handwritten {
+            font-family: 'Caveat', cursive;
+        }
+
+        .hero-bg {
+            background: linear-gradient(rgba(255, 107, 107, 0.85), rgba(78, 205, 196, 0.85)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(255, 107, 107, 0.25);
+        }
+
+        .btn-primary {
+            background: var(--gradient-warm);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 12px 32px;
+            border: 2px solid white;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-coral);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
+        }
+
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .bounce-in {
+            animation: bounceIn 0.8s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .wave-divider {
+            position: relative;
+            background: var(--warm-white);
+        }
+
+        .wave-divider::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z' fill='%23F7F7F7'%3E%3C/path%3E%3C/svg%3E") no-repeat;
+            background-size: cover;
+        }
+
+        .program-icon {
+            transition: all 0.3s ease;
+        }
+
+        .program-card:hover .program-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 6rem;
+            color: var(--accent-yellow);
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            opacity: 0.3;
+        }
+
+        .stats-number {
+            background: var(--gradient-warm);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3rem;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-coral);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .image-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .slider-container {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slider-image {
+            min-width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+
+        .slider-nav:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider-nav.prev { left: 20px; }
+        .slider-nav.next { right: 20px; }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-warm);
+            border-radius: 2px;
+        }
+
+        .emoji-decoration {
+            font-size: 2rem;
+            margin: 0 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero-bg h1 { font-size: 2.5rem; }
+            .stats-number { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white/95 backdrop-blur-md shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-red-400 to-teal-400 rounded-xl flex items-center justify-center mr-3 shadow-lg">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="font-bold text-xl text-gray-800">SMP Negeri 1 Nusantara</span>
+                            <p class="text-xs text-gray-500 handwritten">Rumah kedua untuk impian anak-anak</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-red-400 font-medium transition">🏠 Beranda</a>
+                    <div class="relative group">
+                        <button class="nav-link text-gray-700 hover:text-red-400 font-medium flex items-center">
+                            👥 Profil <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100">
+                            <a href="profil_improved.html#about" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400 rounded-t-xl">Tentang Sekolah</a>
+                            <a href="profil_improved.html#vision" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400">Visi & Misi</a>
+                            <a href="profil_improved.html#history" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400">Sejarah</a>
+                            <a href="profil_improved.html#facilities" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400 rounded-b-xl">Fasilitas</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="nav-link text-gray-700 hover:text-red-400 font-medium flex items-center">
+                            📚 Akademik <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100">
+                            <a href="akdemik_improved.html#programs" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400 rounded-t-xl">Program Unggulan</a>
+                            <a href="akdemik_improved.html#curriculum" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400">Kurikulum</a>
+                            <a href="akdemik_improved.html#teachers" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400">Tenaga Pengajar</a>
+                            <a href="akdemik_improved.html#achievements" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400 rounded-b-xl">Prestasi</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="nav-link text-gray-700 hover:text-red-400 font-medium flex items-center">
+                            🎓 Siswa <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100">
+                            <a href="siswa_improved.html#extracurricular" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400 rounded-t-xl">Ekstrakurikuler</a>
+                            <a href="siswa_improved.html#student-council" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400">OSIS</a>
+                            <a href="siswa_improved.html#alumni" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400">Alumni</a>
+                            <a href="siswa_improved.html#gallery" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-400 rounded-b-xl">Galeri</a>
+                        </div>
+                    </div>
+                    <a href="berita_improved.html#news" class="nav-link text-gray-700 hover:text-red-400 font-medium transition">📰 Berita</a>
+                    <a href="kontak_improved.html#contact" class="nav-link text-gray-700 hover:text-red-400 font-medium transition">💬 Kontak</a>
+                    <button onclick="showLoginModal()" class="btn-primary">
+                        <i class="fas fa-cog mr-2"></i>Admin
+                    </button>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700 hover:text-red-400">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden hidden bg-white border-t">
+            <div class="px-4 py-2 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-gray-700 hover:bg-red-50 rounded">🏠 Beranda</a>
+                <a href="#about" class="block px-3 py-2 text-gray-700 hover:bg-red-50 rounded">👥 Tentang</a>
+                <a href="#programs" class="block px-3 py-2 text-gray-700 hover:bg-red-50 rounded">📚 Program</a>
+                <a href="#news" class="block px-3 py-2 text-gray-700 hover:bg-red-50 rounded">📰 Berita</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-700 hover:bg-red-50 rounded">💬 Kontak</a>
+                <button onclick="showLoginModal()" class="block w-full text-left px-3 py-2 text-red-400 hover:bg-red-50 rounded">
+                    <i class="fas fa-cog mr-2"></i>Admin
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero-bg pt-16 pb-20 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-red-400/20 to-teal-400/20"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-white">
+                        <div class="handwritten text-2xl text-yellow-200 mb-4">Selamat datang di</div>
+                        <h1 class="text-4xl lg:text-6xl font-bold mb-6 bounce-in" id="hero-title">
+                            Rumah Kedua untuk <span class="text-yellow-300">Impian</span> Anak-Anak
+                        </h1>
+                        <p class="text-xl mb-8 text-blue-100 leading-relaxed" id="hero-subtitle">
+                            Di SMP Negeri 1 Nusantara, kami percaya setiap anak memiliki potensi luar biasa. Mari bersama-sama kita wujudkan impian mereka dengan pendidikan yang penuh kasih dan fasilitas terbaik! 
+                            <span class="emoji-decoration">✨</span>
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button class="btn-primary">
+                                <i class="fas fa-heart mr-2"></i>Yuk, Kenalan Lebih Dekat!
+                            </button>
+                            <button class="btn-secondary">
+                                <i class="fas fa-play mr-2"></i>Lihat Kehidupan Sekolah
+                            </button>
+                        </div>
+                        <div class="mt-8 flex items-center space-x-6">
+                            <div class="text-center">
+                                <div class="stats-number">25+</div>
+                                <p class="text-blue-100">Tahun Pengalaman</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="stats-number">1000+</div>
+                                <p class="text-blue-100">Alumni Sukses</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="stats-number">50+</div>
+                                <p class="text-blue-100">Prestasi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative floating-element">
+                        <div class="absolute -top-4 -right-4 w-20 h-20 bg-yellow-300 rounded-full opacity-20 animate-pulse"></div>
+                        <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-teal-300 rounded-full opacity-20 animate-pulse"></div>
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Siswa SMP yang bahagia" 
+                             class="rounded-3xl shadow-2xl w-full h-96 object-cover border-4 border-white/20"
+                             id="hero-image"
+                             onerror="this.src=''; this.alt='Gambar tidak dapat dimuat'; this.style.display='none';">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 text-gray-800 font-semibold">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            Akreditasi A
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-white wave-divider scroll-reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                        Cerita Tentang Keluarga Besar Kami
+                        <span class="emoji-decoration">🏫</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto handwritten text-2xl">
+                        "Lebih dari sekadar sekolah, kami adalah keluarga yang tumbuh bersama"
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="image-slider shadow-2xl" id="about-slider">
+                        <div class="slider-container" id="slider-container">
+                            <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Gedung Sekolah yang Ramah" 
+                                 class="slider-image"
+                                 onerror="this.style.display='none';">
+                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Siswa Belajar dengan Gembira" 
+                                 class="slider-image"
+                                 onerror="this.style.display='none';">
+                            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Kegiatan Seru di Sekolah" 
+                                 class="slider-image"
+                                 onerror="this.style.display='none';">
+                            <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Fasilitas Lengkap untuk Belajar" 
+                                 class="slider-image"
+                                 onerror="this.style.display='none';">
+                        </div>
+                        <button class="slider-nav prev" onclick="previousSlide()">
+                            <i class="fas fa-chevron-left text-gray-600"></i>
+                        </button>
+                        <button class="slider-nav next" onclick="nextSlide()">
+                            <i class="fas fa-chevron-right text-gray-600"></i>
+                        </button>
+                        <div class="slider-dots" id="slider-dots">
+                            <div class="slider-dot active" onclick="goToSlide(0)"></div>
+                            <div class="slider-dot" onclick="goToSlide(1)"></div>
+                            <div class="slider-dot" onclick="goToSlide(2)"></div>
+                            <div class="slider-dot" onclick="goToSlide(3)"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6" id="about-title">
+                            Visi & Misi yang Menginspirasi
+                            <span class="emoji-decoration">🌟</span>
+                        </h3>
+                        <div class="space-y-6" id="about-content">
+                            <div class="bg-gradient-to-r from-red-50 to-teal-50 p-6 rounded-2xl">
+                                <h4 class="text-lg font-semibold text-red-500 mb-3 flex items-center">
+                                    <i class="fas fa-eye mr-2"></i>Visi Kami
+                                </h4>
+                                <p class="text-gray-700 leading-relaxed">Menjadi rumah kedua yang hangat, di mana setiap anak dapat tumbuh menjadi pribadi yang unggul, berkarakter mulia, dan siap menghadapi masa depan dengan percaya diri.</p>
+                            </div>
+                            <div class="bg-gradient-to-r from-teal-50 to-yellow-50 p-6 rounded-2xl">
+                                <h4 class="text-lg font-semibold text-teal-500 mb-3 flex items-center">
+                                    <i class="fas fa-heart mr-2"></i>Misi Kami
+                                </h4>
+                                <ul class="text-gray-700 space-y-2">
+                                    <li class="flex items-start"><span class="text-yellow-400 mr-2">🌱</span>Menciptakan lingkungan belajar yang penuh kasih dan mendukung</li>
+                                    <li class="flex items-start"><span class="text-yellow-400 mr-2">🎯</span>Mengembangkan potensi unik setiap anak dengan pendekatan personal</li>
+                                    <li class="flex items-start"><span class="text-yellow-400 mr-2">🤝</span>Membangun karakter yang kuat melalui nilai-nilai kebaikan</li>
+                                    <li class="flex items-start"><span class="text-yellow-400 mr-2">🚀</span>Mempersiapkan generasi masa depan yang siap bersaing global</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programs Section -->
+        <section id="programs" class="py-20 bg-gradient-to-br from-gray-50 to-white scroll-reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                        Program Unggulan yang Bikin Excited!
+                        <span class="emoji-decoration">🎉</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 handwritten text-2xl">Berbagai kegiatan seru untuk mengembangkan bakat dan minat anak-anak</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="programs-grid">
+                    <div class="program-card bg-white rounded-3xl p-8 shadow-lg card-hover border border-gray-100">
+                        <div class="w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center mb-6 program-icon">
+                            <i class="fas fa-laptop-code text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Kelas Digital Seru</h3>
+                        <p class="text-gray-600 leading-relaxed">Belajar teknologi jadi menyenangkan! Anak-anak akan diajak eksplorasi dunia digital dengan cara yang aman dan kreatif.</p>
+                        <div class="mt-4 flex items-center text-sm text-gray-500">
+                            <i class="fas fa-users mr-2"></i>
+                            <span>24 siswa per kelas</span>
+                        </div>
+                    </div>
+                    <div class="program-card bg-white rounded-3xl p-8 shadow-lg card-hover border border-gray-100">
+                        <div class="w-20 h-20 bg-gradient-to-r from-green-400 to-teal-500 rounded-2xl flex items-center justify-center mb-6 program-icon">
+                            <i class="fas fa-seedling text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Eco School</h3>
+                        <p class="text-gray-600 leading-relaxed">Yuk, jadi sahabat bumi! Program ini mengajak anak-anak mencintai lingkungan sambil belajar sains dengan cara yang menyenangkan.</p>
+                        <div class="mt-4 flex items-center text-sm text-gray-500">
+                            <i class="fas fa-leaf mr-2"></i>
+                            <span>Ramah lingkungan</span>
+                        </div>
+                    </div>
+                    <div class="program-card bg-white rounded-3xl p-8 shadow-lg card-hover border border-gray-100">
+                        <div class="w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mb-6 program-icon">
+                            <i class="fas fa-palette text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Seni & Kreativitas</h3>
+                        <p class="text-gray-600 leading-relaxed">Ekspresikan diri dengan bebas! Dari melukis, musik, hingga teater - semua bakat seni anak akan tersalurkan dengan optimal.</p>
+                        <div class="mt-4 flex items-center text-sm text-gray-500">
+                            <i class="fas fa-star mr-2"></i>
+                            <span>Bakat terasah</span>
+                        </div>
+                    </div>
+                    <div class="program-card bg-white rounded-3xl p-8 shadow-lg card-hover border border-gray-100">
+                        <div class="w-20 h-20 bg-gradient-to-r from-red-400 to-orange-500 rounded-2xl flex items-center justify-center mb-6 program-icon">
+                            <i class="fas fa-running text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Olahraga & Kesehatan</h3>
+                        <p class="text-gray-600 leading-relaxed">Tubuh sehat, pikiran cerdas! Berbagai cabang olahraga tersedia untuk menjaga kebugaran dan mengembangkan jiwa sportivitas.</p>
+                        <div class="mt-4 flex items-center text-sm text-gray-500">
+                            <i class="fas fa-trophy mr-2"></i>
+                            <span>Prestasi olahraga</span>
+                        </div>
+                    </div>
+                    <div class="program-card bg-white rounded-3xl p-8 shadow-lg card-hover border border-gray-100">
+                        <div class="w-20 h-20 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mb-6 program-icon">
+                            <i class="fas fa-globe text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Bahasa Internasional</h3>
+                        <p class="text-gray-600 leading-relaxed">Siap jadi warga dunia! Program bahasa Inggris dan Mandarin yang fun dan interaktif untuk masa depan yang cerah.</p>
+                        <div class="mt-4 flex items-center text-sm text-gray-500">
+                            <i class="fas fa-comments mr-2"></i>
+                            <span>Komunikasi global</span>
+                        </div>
+                    </div>
+                    <div class="program-card bg-white rounded-3xl p-8 shadow-lg card-hover border border-gray-100">
+                        <div class="w-20 h-20 bg-gradient-to-r from-indigo-400 to-blue-500 rounded-2xl flex items-center justify-center mb-6 program-icon">
+                            <i class="fas fa-brain text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Pengembangan Karakter</h3>
+                        <p class="text-gray-600 leading-relaxed">Membangun hati yang baik! Program khusus untuk mengembangkan empati, kepemimpinan, dan nilai-nilai moral yang kuat.</p>
+                        <div class="mt-4 flex items-center text-sm text-gray-500">
+                            <i class="fas fa-heart mr-2"></i>
+                            <span>Karakter mulia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="py-20 bg-gradient-to-r from-red-50 to-teal-50 scroll-reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                        Cerita dari Keluarga Besar Kami
+                        <span class="emoji-decoration">💝</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 handwritten text-2xl">Mendengar langsung dari mereka yang merasakan kehangatan sekolah kami</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="testimonial-card">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                                 alt="Ibu Sarah" class="w-12 h-12 rounded-full mr-4 object-cover">
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Ibu Sarah</h4>
+                                <p class="text-sm text-gray-500">Orang Tua Siswa</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic leading-relaxed">Anak saya jadi lebih percaya diri dan bahagia sekolah di sini. Guru-gurunya benar-benar peduli dengan perkembangan setiap anak.</p>
+                        <div class="flex text-yellow-400 mt-4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                                 alt="Pak Budi" class="w-12 h-12 rounded-full mr-4 object-cover">
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Pak Budi</h4>
+                                <p class="text-sm text-gray-500">Alumni 2020</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic leading-relaxed">Sekolah ini tidak hanya mengajarkan akademik, tapi juga nilai-nilai kehidupan. Saya sangat berterima kasih atas semua pembelajaran yang didapat.</p>
+                        <div class="flex text-yellow-400 mt-4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                                 alt="Ibu Rina" class="w-12 h-12 rounded-full mr-4 object-cover">
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Ibu Rina</h4>
+                                <p class="text-sm text-gray-500">Guru Matematika</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic leading-relaxed">Mengajar di sini seperti memiliki keluarga besar. Lingkungan yang supportif membuat saya bisa memberikan yang terbaik untuk anak-anak.</p>
+                        <div class="flex text-yellow-400 mt-4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 bg-gradient-to-r from-red-400 to-teal-400 text-white scroll-reveal">
+            <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">
+                    Siap Bergabung dengan Keluarga Besar Kami?
+                    <span class="emoji-decoration">🤗</span>
+                </h2>
+                <p class="text-xl mb-8 text-blue-100 leading-relaxed">
+                    Jangan biarkan impian anak Anda menunggu! Mari bersama-sama kita ciptakan masa depan yang cerah dan penuh prestasi.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-white text-red-400 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition transform hover:scale-105">
+                        <i class="fas fa-phone mr-2"></i>Hubungi Kami Sekarang
+                    </button>
+                    <button class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-red-400 transition transform hover:scale-105">
+                        <i class="fas fa-calendar mr-2"></i>Jadwalkan Kunjungan
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-red-400 to-teal-400 rounded-xl flex items-center justify-center mr-3">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="font-bold text-xl">SMP Negeri 1 Nusantara</span>
+                            <p class="text-sm text-gray-300 handwritten">Rumah kedua untuk impian anak-anak</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed">Membangun generasi unggul dan berkarakter melalui pendidikan yang penuh kasih dan fasilitas terbaik.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-red-400 transition transform hover:scale-110"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-red-400 transition transform hover:scale-110"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-red-400 transition transform hover:scale-110"><i class="fab fa-youtube text-xl"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-red-400 transition transform hover:scale-110"><i class="fab fa-tiktok text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4 text-red-400">Menu Cepat</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#home" class="hover:text-white transition">🏠 Beranda</a></li>
+                        <li><a href="#about" class="hover:text-white transition">👥 Tentang</a></li>
+                        <li><a href="#programs" class="hover:text-white transition">📚 Program</a></li>
+                        <li><a href="#news" class="hover:text-white transition">📰 Berita</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4 text-teal-400">Kontak Kami</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-phone mr-2 text-red-400"></i>(021) 1234-5678</li>
+                        <li class="flex items-center"><i class="fas fa-envelope mr-2 text-red-400"></i>info@smpn1nusantara.sch.id</li>
+                        <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-400"></i>Kota Nusantara</li>
+                        <li class="flex items-center"><i class="fas fa-clock mr-2 text-red-400"></i>Senin - Jumat, 07:00 - 16:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 SMP Negeri 1 Nusantara. Dibuat dengan <i class="fas fa-heart text-red-400"></i> untuk masa depan anak-anak Indonesia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Image Slider Variables
+        let currentSlide = 0;
+        const totalSlides = 4;
+
+        // Slider Functions
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            const sliderContainer = document.getElementById('slider-container');
+            const dots = document.querySelectorAll('.slider-dot');
+            
+            sliderContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // Auto-slide functionality
+        function startAutoSlide() {
+            setInterval(nextSlide, 5000);
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('revealed');
+                }
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        function smoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            startAutoSlide();
+            smoothScroll();
+            
+            // Add scroll event listener for reveal animations
+            window.addEventListener('scroll', revealOnScroll);
+            
+            // Initial check for elements in view
+            revealOnScroll();
+        });
+
+        // Placeholder functions for admin functionality
+        function showLoginModal() {
+            alert('Fitur admin akan segera hadir! 🚀');
+        }
+    </script>
+</body>
+</html>
+

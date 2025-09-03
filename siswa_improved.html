@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kehidupan Siswa yang Berwarna - SMP Negeri 1 Nusantara</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-coral: #FF6B6B;
+            --secondary-turquoise: #4ECDC4;
+            --accent-yellow: #FFE66D;
+            --warm-white: #F7F7F7;
+            --text-dark: #2C3E50;
+            --soft-gray: #95A5A6;
+            --gradient-warm: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+            --gradient-soft: linear-gradient(135deg, #FFE66D 0%, #FF6B6B 100%);
+        }
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .handwritten {
+            font-family: 'Caveat', cursive;
+        }
+
+        .hero-bg {
+            background: linear-gradient(rgba(255, 107, 107, 0.85), rgba(78, 205, 196, 0.85)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(255, 107, 107, 0.25);
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-warm);
+            border-radius: 2px;
+        }
+
+        .emoji-decoration {
+            font-size: 2rem;
+            margin: 0 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-coral);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-warm);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .extracurricular-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .extracurricular-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.15);
+        }
+
+        .extracurricular-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .extracurricular-card:hover::before {
+            left: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .hero-bg h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white/95 backdrop-blur-md shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-red-400 to-teal-400 rounded-xl flex items-center justify-center mr-3 shadow-lg">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="font-bold text-xl text-gray-800">SMP Negeri 1 Nusantara</span>
+                            <p class="text-xs text-gray-500 handwritten">Rumah kedua untuk impian anak-anak</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-gray-700 hover:text-red-400 font-medium transition">🏠 Beranda</a>
+                    <a href="profil_improved.html" class="nav-link text-gray-700 hover:text-red-400 font-medium transition">👥 Profil</a>
+                    <a href="akademik_improved.html" class="nav-link text-gray-700 hover:text-red-400 font-medium transition">📚 Akademik</a>
+                    <a href="#" class="nav-link text-red-400 font-medium transition">🎓 Siswa</a>
+                    <a href="berita.html#news" class="nav-link text-gray-700 hover:text-red-400 font-medium transition">📰 Berita</a>
+                    <a href="kontak_improved.html#contact" class="nav-link text-gray-700 hover:text-red-400 font-medium transition">💬 Kontak</a>
+                    <button onclick="showLoginModal()" class="btn-primary">
+                        <i class="fas fa-cog mr-2"></i>Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <!-- Hero Section -->
+        <section class="hero-bg pt-16 pb-20 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-red-400/20 to-teal-400/20"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 relative z-10">
+                <div class="text-center text-white">
+                    <div class="handwritten text-2xl text-yellow-200 mb-4">Waktunya bersenang-senang!</div>
+                    <h1 class="text-4xl lg:text-6xl font-bold mb-6" id="hero-title">
+                        Kehidupan Siswa yang <span class="text-yellow-300">Berwarna!</span>
+                        <span class="emoji-decoration">🎨</span>
+                    </h1>
+                    <p class="text-xl mb-8 text-blue-100 max-w-3xl mx-auto leading-relaxed" id="hero-subtitle">
+                        Di SMP Negeri 1 Nusantara, setiap hari adalah petualangan baru! Dari ekstrakurikuler seru hingga kegiatan OSIS yang menantang, mari jelajahi dunia yang penuh warna dan inspirasi.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Extracurricular Section -->
+        <section id="extracurricular" class="py-20 bg-white scroll-reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                        Ekstrakurikuler yang Bikin Excited!
+                        <span class="emoji-decoration">⚡</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 handwritten text-2xl">Temukan passion-mu dan kembangkan bakat tersembunyi</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="extracurricular-card card-hover">
+                        <div class="w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-music text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Band & Paduan Suara</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">Ekspresikan jiwa seni melalui musik! Dari rock hingga klasik, semua genre musik bisa kamu pelajari di sini.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-users mr-2"></i>
+                            <span>45 anggota aktif</span>
+                        </div>
+                    </div>
+                    
+                    <div class="extracurricular-card card-hover">
+                        <div class="w-20 h-20 bg-gradient-to-r from-green-400 to-teal-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-futbol text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Olahraga</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">Basket, futsal, voli, badminton - pilih olahraga favoritmu dan raih prestasi bersama tim yang solid!</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-trophy mr-2"></i>
+                            <span>15 medali tahun ini</span>
+                        </div>
+                    </div>
+                    
+                    <div class="extracurricular-card card-hover">
+                        <div class="w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-robot text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Robotika & Coding</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">Masa depan ada di tanganmu! Belajar programming, AI, dan robotika dengan cara yang fun dan interactive.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-code mr-2"></i>
+                            <span>Project-based learning</span>
+                        </div>
+                    </div>
+                    
+                    <div class="extracurricular-card card-hover">
+                        <div class="w-20 h-20 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-palette text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Seni & Kreativitas</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">Lukis, gambar, kerajinan tangan, dan seni digital - wujudkan imajinasi tanpa batas!</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-paint-brush mr-2"></i>
+                            <span>Pameran setiap semester</span>
+                        </div>
+                    </div>
+                    
+                    <div class="extracurricular-card card-hover">
+                        <div class="w-20 h-20 bg-gradient-to-r from-red-400 to-pink-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-theater-masks text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Teater & Drama</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">Berakting, bercerita, dan menghibur! Kembangkan kepercayaan diri dan kemampuan public speaking.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-masks-theater mr-2"></i>
+                            <span>Pertunjukan rutin</span>
+                        </div>
+                    </div>
+                    
+                    <div class="extracurricular-card card-hover">
+                        <div class="w-20 h-20 bg-gradient-to-r from-indigo-400 to-blue-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-leaf text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Pecinta Alam</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">Jelajahi alam, camping, hiking, dan belajar mencintai lingkungan dengan cara yang seru!</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-mountain mr-2"></i>
+                            <span>Adventure setiap bulan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Council Section -->
+        <section id="student-council" class="py-20 bg-gradient-to-br from-gray-50 to-white scroll-reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                        OSIS: Rumah Kepemimpinan
+                        <span class="emoji-decoration">👑</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 handwritten text-2xl">Tempat lahirnya pemimpin masa depan</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Organisasi yang Mengasah Leadership</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <span class="text-yellow-400 mr-3 text-xl">🎯</span>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Event Organizer</h4>
+                                    <p class="text-gray-600">Merencanakan dan mengorganisir berbagai acara sekolah yang seru dan berkesan</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-yellow-400 mr-3 text-xl">🤝</span>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Aspirasi Siswa</h4>
+                                    <p class="text-gray-600">Menjadi jembatan komunikasi antara siswa dan pihak sekolah</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-yellow-400 mr-3 text-xl">🌟</span>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Pengembangan Diri</h4>
+                                    <p class="text-gray-600">Program pelatihan leadership dan soft skills untuk semua anggota</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-users text-white text-2xl"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-800 mb-4">Kegiatan OSIS Tahun Ini</h4>
+                            <ul class="text-gray-600 space-y-2">
+                                <li>🎪 Festival Seni & Budaya</li>
+                                <li>🏃‍♂️ Olimpiade Olahraga Antar Kelas</li>
+                                <li>📚 Bazar Buku & Edukasi</li>
+                                <li>🌱 Program Go Green School</li>
+                                <li>🎭 Pentas Seni Akhir Tahun</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alumni Section -->
+        <section id="alumni" class="py-20 bg-white scroll-reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                        Alumni yang Menginspirasi
+                        <span class="emoji-decoration">🌟</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 handwritten text-2xl">Jejak sukses yang membanggakan</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 card-hover text-center">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                             alt="Alumni" class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Andi Pratama</h3>
+                        <p class="text-blue-500 font-semibold mb-2">Software Engineer di Google</p>
+                        <p class="text-gray-600 text-sm">"SMP Negeri 1 Nusantara mengajarkan saya untuk selalu curious dan never stop learning!"</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-6 card-hover text-center">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                             alt="Alumni" class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Sari Indira</h3>
+                        <p class="text-teal-500 font-semibold mb-2">Dokter Spesialis Anak</p>
+                        <p class="text-gray-600 text-sm">"Nilai-nilai empati dan kepedulian yang diajarkan di sini membentuk passion saya di bidang medis."</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 card-hover text-center">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                             alt="Alumni" class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Budi Santoso</h3>
+                        <p class="text-orange-500 font-semibold mb-2">Entrepreneur Sukses</p>
+                        <p class="text-gray-600 text-sm">"Leadership skills yang diasah melalui OSIS menjadi fondasi kesuksesan bisnis saya."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 bg-gradient-to-r from-red-400 to-teal-400 text-white scroll-reveal">
+            <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-6">
+                    Siap Menjadi Bagian dari Keluarga Besar Kami?
+                    <span class="emoji-decoration">🤗</span>
+                </h2>
+                <p class="text-xl mb-8 text-blue-100 leading-relaxed">
+                    Bergabunglah dengan ribuan siswa yang telah merasakan kehangatan dan pengalaman tak terlupakan di SMP Negeri 1 Nusantara!
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-white text-red-400 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition transform hover:scale-105">
+                        <i class="fas fa-user-plus mr-2"></i>Daftar Sekarang
+                    </button>
+                    <button class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-red-400 transition transform hover:scale-105">
+                        <i class="fas fa-calendar mr-2"></i>Kunjungi Sekolah
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-red-400 to-teal-400 rounded-xl flex items-center justify-center mr-3">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="font-bold text-xl">SMP Negeri 1 Nusantara</span>
+                            <p class="text-sm text-gray-300 handwritten">Rumah kedua untuk impian anak-anak</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed">Membangun generasi unggul dan berkarakter melalui pendidikan yang penuh kasih dan fasilitas terbaik.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4 text-red-400">Menu Cepat</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="index.html" class="hover:text-white transition">🏠 Beranda</a></li>
+                        <li><a href="#extracurricular" class="hover:text-white transition">⚡ Ekstrakurikuler</a></li>
+                        <li><a href="#student-council" class="hover:text-white transition">👑 OSIS</a></li>
+                        <li><a href="#alumni" class="hover:text-white transition">🌟 Alumni</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4 text-teal-400">Kontak Kami</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-phone mr-2 text-red-400"></i>(021) 1234-5678</li>
+                        <li class="flex items-center"><i class="fas fa-envelope mr-2 text-red-400"></i>info@smpn1nusantara.sch.id</li>
+                        <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-400"></i>Kota Nusantara</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 SMP Negeri 1 Nusantara. Dibuat dengan <i class="fas fa-heart text-red-400"></i> untuk masa depan anak-anak Indonesia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('revealed');
+                }
+            });
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add scroll event listener for reveal animations
+            window.addEventListener('scroll', revealOnScroll);
+            
+            // Initial check for elements in view
+            revealOnScroll();
+        });
+
+        // Placeholder functions
+        function showLoginModal() {
+            alert('Fitur admin akan segera hadir! 🚀');
+        }
+    </script>
+</body>
+</html>
+
